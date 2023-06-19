@@ -1,5 +1,4 @@
 import sqlite3
-import os
 
 from config import database, options_conn_c, options_c
 from database import create_tables
