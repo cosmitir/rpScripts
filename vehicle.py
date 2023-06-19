@@ -30,7 +30,11 @@ def add_items_to_vehicle(conn, c):
             item_name = input("Enter the item name (or 'done' to finish): ")
             if item_name == "done":
                 break
-            item_quantity = int(input("Enter the quantity: "))
+            try:
+                item_quantity = int(input("Enter the quantity: "))
+            except ValueError:
+                print("Invalid quantity. Please enter a number.")
+                continue
             item_id = get_item_id(c, item_name)
             if item_id:
                 items.append((item_id, item_quantity))
@@ -74,7 +78,11 @@ def remove_items_from_vehicle(conn, c):
             item_name = input("Enter the item name (or 'done' to finish): ")
             if item_name == "done":
                 break
-            item_quantity = int(input("Enter the quantity: "))
+            try:
+                item_quantity = int(input("Enter the quantity: "))
+            except ValueError:
+                print("Invalid quantity. Please enter a number.")
+                continue
             item_id = get_item_id(c, item_name)
             if item_id:
                 items.append((item_id, item_quantity))
