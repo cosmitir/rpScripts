@@ -1,6 +1,56 @@
 import json
 
 
+def create_tables(conn, c):
+    # Create the vehicles table if it doesn't exist
+    c.execute(
+        """CREATE TABLE IF NOT EXISTS vehicles (
+										id INTEGER PRIMARY KEY AUTOINCREMENT,
+										license_plate TEXT NOT NULL
+								)"""
+    )
+
+    # Create the vehicles table if it doesn't exist
+    c.execute(
+        """CREATE TABLE IF NOT EXISTS houses (
+										id INTEGER PRIMARY KEY AUTOINCREMENT,
+										postal_code TEXT NOT NULL
+								)"""
+    )
+
+    # Create the items table if it doesn't exist
+    c.execute(
+        """CREATE TABLE IF NOT EXISTS items (
+										id INTEGER PRIMARY KEY AUTOINCREMENT,
+										name TEXT NOT NULL
+								)"""
+    )
+
+    # Create the vehicle_items table if it doesn't exist
+    c.execute(
+        """CREATE TABLE IF NOT EXISTS vehicle_items (
+										vehicle_id INTEGER,
+										item_id INTEGER,
+										quantity INTEGER,
+										FOREIGN KEY (vehicle_id) REFERENCES vehicles (id),
+										FOREIGN KEY (item_id) REFERENCES items (id)
+								)"""
+    )
+
+    # Create the house_items table if it doesn't exist
+    c.execute(
+        """CREATE TABLE IF NOT EXISTS house_items (
+										house_id INTEGER,
+										item_id INTEGER,
+										quantity INTEGER,
+										FOREIGN KEY (house_id) REFERENCES houses (id),
+										FOREIGN KEY (item_id) REFERENCES items (id)
+								)"""
+    )
+
+    conn.commit()
+
+
 def output_database(c):
     # Retrieve all the data from the database
     c.execute(
