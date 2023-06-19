@@ -7,6 +7,23 @@ from house import add_house, add_items_to_house, remove_items_from_house
 from item import add_item, search_item, output_items
 
 
+options_conn_c = {
+    "1": add_vehicle,
+    "2": add_house,
+    "3": add_item,
+    "4": add_items_to_vehicle,
+    "5": add_items_to_house,
+    "6": remove_items_from_vehicle,
+    "7": remove_items_from_house,
+}
+
+options_c = {
+    "8": search_item,
+    "9": output_database,
+    "10": output_items,
+}
+
+
 def main():
     # Connect to the database
     conn = sqlite3.connect("D:/storage/database/vehicles/vehicles.db")
@@ -20,6 +37,7 @@ def main():
             "Press Enter to continue..."
         )  # Wait for user input before clearing the console
         os.system("cls" if os.name == "nt" else "clear")  # Clear the console
+
         print("Select an option:")
         print("1. Add vehicles to database")
         print("2. Add houses to database")
@@ -35,28 +53,13 @@ def main():
 
         option = input("Enter the option number: ")
 
-        if option == "1":
-            add_vehicle(conn, c)
-        elif option == "2":
-            add_house(conn, c)
-        elif option == "3":
-            add_item(conn, c)
-        elif option == "4":
-            add_items_to_vehicle(conn, c)
-        elif option == "5":
-            add_items_to_house(conn, c)
-        elif option == "6":
-            remove_items_from_vehicle(conn, c)
-        elif option == "7":
-            remove_items_from_house(conn, c)
-        elif option == "8":
-            search_item(c)
-        elif option == "9":
-            output_database(c)
-        elif option == "10":
-            output_items(c)
-        elif option == "0":
+        if option == "0":
             break
+
+        if option in options_conn_c:
+            options_conn_c[option](conn, c)
+        elif option in options_c:
+            options_c[option](c)
         else:
             print("Invalid option. Please try again.")
 
