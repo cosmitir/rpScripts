@@ -2,6 +2,9 @@ import json
 
 
 def add_item(conn, c):
+    """
+    Add items to the database.
+    """
     while True:
         name = input("Enter an item name (or 'done' to exit): ")
         if name == "done":
@@ -20,8 +23,11 @@ def add_item(conn, c):
 
 
 def search_item(c):
+    """
+    Search for an item and retrieve the vehicles and houses that have it and their quantities.
+    """
     item_name = input("Enter the item name: ")
-    # Search for an item and retrieve the vehicles and houses that have it and their quantities
+
     c.execute(
         f"""SELECT vehicles.license_plate, vehicle_items.quantity
                  FROM vehicles
@@ -48,6 +54,9 @@ def search_item(c):
 
 
 def output_items(c):
+    """
+    Output the list of items to a JSON file.
+    """
     # Retrieve all the items from the database
     c.execute("SELECT * FROM items")
     results = c.fetchall()
@@ -59,7 +68,10 @@ def output_items(c):
         data[item_id] = item_name
 
     # Write the data to a JSON file
-    with open("items.json", "w") as f:
-        json.dump(data, f, indent=4)
+    try:
+        with open("items.json", "w") as f:
+            json.dump(data, f, indent=4)
+    except IOError:
+        print("Error writing to file.")
 
     print("Item list output successfully!")
