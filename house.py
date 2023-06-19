@@ -7,12 +7,14 @@ def add_house(conn, c):
         if postal_code == "done":
             break
 
+        # Check if the house already exists in the database
         c.execute("SELECT * FROM houses WHERE postal_code=?", (postal_code,))
         result = c.fetchone()
 
         if result is not None:
             print("House already exists in database.")
         else:
+            # Insert the new house into the database
             c.execute("INSERT INTO houses (postal_code) VALUES (?)", (postal_code,))
             conn.commit()
 
@@ -28,7 +30,11 @@ def add_items_to_house(conn, c):
             item_name = input("Enter the item name (or 'done' to finish): ")
             if item_name == "done":
                 break
-            item_quantity = int(input("Enter the quantity: "))
+            try:
+                item_quantity = int(input("Enter the quantity: "))
+            except ValueError:
+                print("Invalid quantity. Please enter a number.")
+                continue
             item_id = get_item_id(c, item_name)
             if item_id:
                 items.append((item_id, item_quantity))
@@ -70,7 +76,11 @@ def remove_items_from_house(conn, c):
             item_name = input("Enter the item name (or 'done' to finish): ")
             if item_name == "done":
                 break
-            item_quantity = int(input("Enter the quantity: "))
+            try:
+                item_quantity = int(input("Enter the quantity: "))
+            except ValueError:
+                print("Invalid quantity. Please enter a number.")
+                continue
             item_id = get_item_id(c, item_name)
             if item_id:
                 items.append((item_id, item_quantity))
