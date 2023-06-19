@@ -5,7 +5,7 @@ def get_vehicle_id(c, license_plate):
     if result:
         return result[0]
     else:
-        return None
+        raise ValueError("No vehicle found with license plate {}".format(license_plate))
 
 
 def get_house_id(c, postal_code):
@@ -15,7 +15,7 @@ def get_house_id(c, postal_code):
     if result:
         return result[0]
     else:
-        return None
+        raise ValueError("No house found with postal code {}".format(postal_code))
 
 
 def get_item_id(c, name):
@@ -25,4 +25,4 @@ def get_item_id(c, name):
     if result:
         return result[0]
     else:
-        return None
+        raise ValueError("No item found with name {}".format(name))
