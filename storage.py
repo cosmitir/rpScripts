@@ -1,6 +1,6 @@
 import sqlite3
 
-from config import database, options_conn_c, options_c
+from config import database_path, options_conn_c, options_c
 from database import create_tables
 from menu import menu
 
@@ -8,7 +8,7 @@ from menu import menu
 def main():
     # Connect to the database
     try:
-        conn = sqlite3.connect(database)
+        conn = sqlite3.connect(database_path)
         c = conn.cursor()
     except sqlite3.Error as e:
         print(f"Error connecting to database: {e}")
