@@ -7,11 +7,20 @@ from menu import menu
 
 def main():
     # Connect to the database
-    conn = sqlite3.connect(database)
-    c = conn.cursor()
+    try:
+        conn = sqlite3.connect(database)
+        c = conn.cursor()
+    except sqlite3.Error as e:
+        print(f"Error connecting to database: {e}")
+        return
 
     # Create the tables
-    create_tables(conn, c)
+    try:
+        create_tables(conn, c)
+    except sqlite3.Error as e:
+        print(f"Error creating tables: {e}")
+        conn.close()
+        return
 
     while True:
         menu()
@@ -22,9 +31,15 @@ def main():
             break
 
         if option in options_conn_c:
-            options_conn_c[option](conn, c)
+            try:
+                options_conn_c[option](conn, c)
+            except sqlite3.Error as e:
+                print(f"Error executing command: {e}")
         elif option in options_c:
-            options_c[option](c)
+            try:
+                options_c[option](c)
+            except sqlite3.Error as e:
+                print(f"Error executing command: {e}")
         else:
             print("Invalid option. Please try again.")
 
