@@ -18,6 +18,7 @@ def add_item(conn, c):
         else:
             c.execute("INSERT INTO items (name) VALUES (?)", (name,))
             conn.commit()
+            print("Items added to database successfully!")
 
     print("Items added to database successfully!")
 
