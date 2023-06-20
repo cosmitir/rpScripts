@@ -7,6 +7,8 @@ def add_item(conn, c):
     """
     while True:
         name = input("Item Name ('done' to finish): ")
+        if not name:
+            continue
         if name == "done":
             break
 
@@ -27,7 +29,11 @@ def search_item(c):
     """
     Search for an item and retrieve the vehicles and houses that have it and their quantities.
     """
-    item_name = input("Item Name: ")
+    while True:
+        item_name = input("Item Name: ")
+        if not item_name:
+            continue
+        break
 
     c.execute(
         f"""SELECT vehicles.license_plate, vehicle_items.quantity

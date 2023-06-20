@@ -4,6 +4,8 @@ from get_id import get_vehicle_id, get_item_id
 def add_vehicle(conn, c):
     while True:
         license_plate = input("License Plate ('done' to exit): ")
+        if not license_plate:
+            continue
         if license_plate == "done":
             break
 
@@ -22,12 +24,18 @@ def add_vehicle(conn, c):
 
 
 def add_items_to_vehicle(conn, c):
-    license_plate = input("License Plate: ")
+    while True:
+        license_plate = input("License Plate: ")
+        if not license_plate:
+            continue
+        break
     vehicle_id = get_vehicle_id(c, license_plate)
     if vehicle_id:
         items = []
         while True:
             item_name = input("Item Name ('done' to finish): ")
+            if not item_name:
+                continue
             if item_name == "done":
                 break
             try:
@@ -70,12 +78,18 @@ def add_items_to_vehicle(conn, c):
 
 
 def remove_items_from_vehicle(conn, c):
-    license_plate = input("License Plate: ")
+    while True:
+        license_plate = input("License Plate: ")
+        if not license_plate:
+            continue
+        break
     vehicle_id = get_vehicle_id(c, license_plate)
     if vehicle_id:
         items = []
         while True:
             item_name = input("Item Name ('done' to finish): ")
+            if not item_name:
+                continue
             if item_name == "done":
                 break
             try:
