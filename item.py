@@ -26,7 +26,7 @@ def search_item(c):
     """
     Search for an item and retrieve the vehicles and houses that have it and their quantities.
     """
-    item_name = input("Enter the item name: ")
+    item_name = input("Item Name: ")
 
     c.execute(
         f"""SELECT vehicles.license_plate, vehicle_items.quantity
