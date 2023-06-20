@@ -6,7 +6,7 @@ def add_item(conn, c):
     Add items to the database.
     """
     while True:
-        name = input("Enter an item name (or 'done' to exit): ")
+        name = input("Item Name ('done' to finish): ")
         if name == "done":
             break
 

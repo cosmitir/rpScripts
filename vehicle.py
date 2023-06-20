@@ -22,12 +22,12 @@ def add_vehicle(conn, c):
 
 
 def add_items_to_vehicle(conn, c):
-    license_plate = input("Enter the license plate of the vehicle: ")
+    license_plate = input("License Plate: ")
     vehicle_id = get_vehicle_id(c, license_plate)
     if vehicle_id:
         items = []
         while True:
-            item_name = input("Enter the item name (or 'done' to finish): ")
+            item_name = input("Item Name ('done' to finish): ")
             if item_name == "done":
                 break
             try:
@@ -70,12 +70,12 @@ def add_items_to_vehicle(conn, c):
 
 
 def remove_items_from_vehicle(conn, c):
-    license_plate = input("Enter the license plate of the vehicle: ")
+    license_plate = input("License Plate: ")
     vehicle_id = get_vehicle_id(c, license_plate)
     if vehicle_id:
         items = []
         while True:
-            item_name = input("Enter the item name (or 'done' to finish): ")
+            item_name = input("Item Name ('done' to finish): ")
             if item_name == "done":
                 break
             try:

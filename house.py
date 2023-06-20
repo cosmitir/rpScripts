@@ -3,7 +3,7 @@ from get_id import get_house_id, get_item_id
 
 def add_house(conn, c):
     while True:
-        postal_code = input("Enter a postal code (or 'done' to exit): ")
+        postal_code = input("Postal Code ('done' to exit): ")
         if postal_code == "done":
             break
 
@@ -22,12 +22,12 @@ def add_house(conn, c):
 
 
 def add_items_to_house(conn, c):
-    postal_code = input("Enter the postal code of the house: ")
+    postal_code = input("Postal Code: ")
     house_id = get_house_id(c, postal_code)
     if house_id:
         items = []
         while True:
-            item_name = input("Enter the item name (or 'done' to finish): ")
+            item_name = input("Item Name ('done' to finish): ")
             if item_name == "done":
                 break
             try:
@@ -68,12 +68,12 @@ def add_items_to_house(conn, c):
 
 
 def remove_items_from_house(conn, c):
-    postal_code = input("Enter the postal code of the house: ")
+    postal_code = input("Postal Code: ")
     house_id = get_house_id(c, postal_code)
     if house_id:
         items = []
         while True:
-            item_name = input("Enter the item name (or 'done' to finish): ")
+            item_name = input("Item Name ('done' to finish): ")
             if item_name == "done":
                 break
             try:
