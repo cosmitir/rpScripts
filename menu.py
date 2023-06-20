@@ -1,7 +1,9 @@
+# Import statements go at the top of the file
 import os
 
 
 def menu():
+    """Prints a menu for the user to select from."""
     input(
         "Press Enter to continue..."
     )  # Wait for user input before clearing the console

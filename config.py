@@ -5,6 +5,9 @@ from item import add_item, search_item, output_items
 
 database_path = "D:/storage/database/vehicles/vehicles.db"
 
+# Create a dictionary of options for the user
+# The keys are the option numbers
+# The values are the functions to call when the user selects an option
 options_conn_c = {
     "1": add_vehicle,
     "2": add_house,
